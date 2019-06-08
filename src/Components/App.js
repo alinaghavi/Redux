@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import '../Css/App.css';
 import ToDoList from './ToDoList';
 import AddToDo from './AddToDo';
+import Navbar from './Navbar';
 
 class App extends Component {
     state = {
@@ -32,6 +33,7 @@ class App extends Component {
     render() {
         return (
             <div className="todo-app container">
+                <Navbar/>
                 <h1 className="center blue-text">Todo's</h1>
                 <ToDoList toDoList={this.state.toDoList} deleteItem={this.deleteItem}/>
                 <h3 className="center blue-text">Add New Todo</h3>
