@@ -1,0 +1,11 @@
+.header div{
+    font-weight: bold;
+}
+
+.delete-btn{
+    color: maroon;
+}
+
+.add-btn{
+    margin-top: 35px;
+}

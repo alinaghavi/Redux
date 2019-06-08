@@ -11,11 +11,19 @@ class App extends Component {
             {todo: 'Tell my mom', priority: 'Low', status: 'Closed', id: 3}
         ]
     };
+    deleteItem = (id) => {
+        let toDoList = this.state.toDoList.filter((item) => {
+            return item.id !== id;
+        });
+        this.setState({
+            toDoList: toDoList
+        })
+
+    };
 
     addItem = (item) => {
         item.id = Math.random();
         let toDoList = [...this.state.toDoList, item];
-        console.log(toDoList);
         this.setState({
             toDoList: toDoList
         })
@@ -23,8 +31,10 @@ class App extends Component {
 
     render() {
         return (
-            <div>
-                <ToDoList toDoList={this.state.toDoList}/>
+            <div className="todo-app container">
+                <h1 className="center blue-text">Todo's</h1>
+                <ToDoList toDoList={this.state.toDoList} deleteItem={this.deleteItem}/>
+                <h3 className="center blue-text">Add New Todo</h3>
                 <AddToDo addItem={this.addItem}/>
             </div>
         );
