@@ -1,47 +1,23 @@
-import React, {Component} from 'react';
-import '../Css/App.css';
-import ToDoList from './ToDoList';
-import AddToDo from './AddToDo';
+import React from 'react';
 import Navbar from './Navbar';
+import {BrowserRouter, Route} from 'react-router-dom';
+import Home from './Home';
+import About from './About';
+import Contact from './Contact';
+import Post from './Post';
 
-class App extends Component {
-    state = {
-        toDoList: [
-            {todo: 'Wash the dishes', priority: 'High', status: 'open', id: 1},
-            {todo: 'Do the home works', priority: 'Medium', status: 'open', id: 2},
-            {todo: 'Tell my mom', priority: 'Low', status: 'Closed', id: 3}
-        ]
-    };
-    deleteItem = (id) => {
-        let toDoList = this.state.toDoList.filter((item) => {
-            return item.id !== id;
-        });
-        this.setState({
-            toDoList: toDoList
-        })
 
-    };
-
-    addItem = (item) => {
-        item.id = Math.random();
-        let toDoList = [...this.state.toDoList, item];
-        this.setState({
-            toDoList: toDoList
-        })
-    };
-
-    render() {
-        return (
-            <div className="todo-app container">
-                <Navbar/>
-                <h1 className="center blue-text">Todo's</h1>
-                <ToDoList toDoList={this.state.toDoList} deleteItem={this.deleteItem}/>
-                <h3 className="center blue-text">Add New Todo</h3>
-                <AddToDo addItem={this.addItem}/>
-            </div>
-        );
-    }
-}
+const App = () => {
+    return (
+        <BrowserRouter>
+            <Navbar/>
+            <Route exact path="/" component={Home}/>
+            <Route path="/About" component={About}/>
+            <Route path="/Contact" component={Contact}/>
+            <Route path="/posts/:post_id" component={Post}/>
+        </BrowserRouter>
+    );
+};
 
 
 export default App;
