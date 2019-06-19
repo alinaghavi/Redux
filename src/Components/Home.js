@@ -1,14 +1,16 @@
 import React, {Component} from 'react';
 import '../Css/App.css';
-import axios from 'axios';
 import {Link} from 'react-router-dom';
 import pokeball from '../Images/pokeball.png';
 import { connect } from 'react-redux';
+import {getAllPosts} from "../Actions/postActions";
 
 
 class Home extends Component {
+    componentDidMount() {
+         this.props.getAllPosts();
+    }
     render() {
-        console.log(this.props);
         const {posts} = this.props;
         const postList = (posts.length) ? (
             posts.map(post => {
@@ -53,4 +55,11 @@ const mapStateToProps = (state) => {
     })
 };
 
-export default connect(mapStateToProps)(Home);
+const mapsDispatchToProps = (dispatch) => {
+    return{
+        getAllPosts: () => { dispatch(getAllPosts()) }
+    }
+};
+
+
+export default connect(mapStateToProps, mapsDispatchToProps )(Home);
